@@ -8,7 +8,7 @@
 // netlify settings
 Branch: production
 Build command: see build setup
-Publish directory: dist
+Publish directory: <not set> // because it is current folder `.` with vue browserify-simple template
 ```
 
 ## Build Setup
