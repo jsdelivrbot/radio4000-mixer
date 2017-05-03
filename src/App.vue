@@ -1,14 +1,15 @@
 <template>
 	<div id="app">
 		<header>
-			<form class="split" @submit="reload">
-				<input v-model="inputA" placeholder="Deck A">
-				<input v-model="inputB" placeholder="Deck B">
+			<form class="split" v-on:submit.prevent="reload">
+				<input v-model="inputA" placeholder="Enter radio for deck A…">
+				<input v-model="inputB" placeholder="Enter radio for deck B…">
+				<button type="submit">load</button>
 			</form>
 		</header>
 		<section class="split">
-			<radio4000-player :slug="slugA" :volume="volA"></radio4000-player>
-			<radio4000-player :slug="slugB" :volume="volB"></radio4000-player>
+			<radio4000-player :slug="deckA" :volume="volA"></radio4000-player>
+			<radio4000-player :slug="deckB" :volume="volB"></radio4000-player>
 		</section>
 		<menu>
 			<input type="range" v-model.number="balance">
@@ -37,8 +38,7 @@ export default {
 		}
 	},
 	methods: {
-		reload(event) {
-			event.preventDefault()
+		reload() {
 			this.deckA = this.inputA
 			this.deckB = this.inputB
 		}
@@ -61,12 +61,19 @@ body {
 	display: flex;
 	flex-flow: column nowrap;
 }
-
+#app>header button {
+	display: none; /* form won't submit without button in DOM */
+}
 .split {
 	display: flex;
 }
 .split > * {
 	flex: 50%;
+}
+#app>header input {
+	min-height: 2em;
+	padding: 0 0.5em;
+	border: 1px solid black;
 }
 
 #app>section{
@@ -81,6 +88,7 @@ body {
 
 #app>menu {
 	width: 80%;
+	padding: 0;
 	margin: 1rem auto;
 }
 input[type="range"] {
