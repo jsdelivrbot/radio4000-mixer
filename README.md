@@ -2,6 +2,15 @@
 
 > A YouTube mixer
 
+## Deploy settings
+
+```
+// netlify settings
+Branch: production
+Build command: see build setup
+Publish directory: dist
+```
+
 ## Build Setup
 
 ``` bash
