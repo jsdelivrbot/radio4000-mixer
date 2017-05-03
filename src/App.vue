@@ -1,11 +1,12 @@
 <template>
 	<div id="app">
-		<div class="Decks">
+		<section>
 			<radio4000-player slug="sugar-hiccup" :volume="volA"></radio4000-player>
 			<radio4000-player slug="200ok" :volume="volB"></radio4000-player>
-		</div>
-		<input type="range" v-model.number="balance">
-		<p>{{balance}}</p>
+		</section>
+		<controls>
+			<input type="range" v-model.number="balance">
+		</controls>
 	</div>
 </template>
 
@@ -36,24 +37,29 @@ body {
 
 <style scoped>
 #app {
-	padding: 0 0.5em 1em;
+	padding: 1rem;
+	height: 100vh;
+	box-sizing: border-box;
+	background-color: #ccc;
+	display: flex;
+	flex-flow: column nowrap;
 }
-.Decks {
+#app>section{
+	flex: 1;
 	display: flex;
 	margin-bottom: 1em;
 }
-.Decks > * {
+#app>section> * {
 	flex: 50%;
 	max-width: none;
-	border: 1px solid;
-	border-width: 1em 0.5em;
+	height: auto;
+	border: 1px solid black;
+}
+#app>controls {
+	width: 80%;
+	margin: 1rem auto;
 }
 input[type="range"] {
-	display: block;
-	width: 80%;
-	margin: 0 auto;
-}
-p {
-	text-align: center;
+	width: 100%;
 }
 </style>
