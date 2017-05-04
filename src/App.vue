@@ -1,15 +1,15 @@
 <template>
 	<div id="app">
 		<header>
-			<form class="split" v-on:submit.prevent="reload">
-				<input v-model="inputA" placeholder="Enter radio for deck A…">
-				<input v-model="inputB" placeholder="Enter radio for deck B…">
+			<form class="split" @submit.prevent="reload">
+				<input v-model="inputA" @blur="reload" placeholder="Enter radio for deck A…">
+				<input v-model="inputB" @blur="reload" placeholder="Enter radio for deck B…">
 				<button type="submit">load</button>
 			</form>
 		</header>
 		<section class="split">
-			<radio4000-player :slug="deckA" :volume="volA"></radio4000-player>
-			<radio4000-player :slug="deckB" :volume="volB"></radio4000-player>
+			<radio4000-player v-show="deckA" :slug="deckA" :volume="volA"></radio4000-player>
+			<radio4000-player v-show="deckB" :slug="deckB" :volume="volB"></radio4000-player>
 		</section>
 		<menu>
 			<input type="range" v-model.number="balance">
@@ -62,7 +62,8 @@ body {
 	flex-flow: column nowrap;
 }
 #app>header button {
-	display: none; /* form won't submit without button in DOM */
+	display: none;
+	max-width: 4rem;
 }
 .split {
 	display: flex;
@@ -73,7 +74,10 @@ body {
 #app>header input {
 	min-height: 2em;
 	padding: 0 0.5em;
-	border: 1px solid black;
+	border-top: 1px solid #999;
+	border-left: 1px solid #999;
+	border-right: 1px solid #999;
+	background-color: #fafafa;
 }
 
 #app>section{
@@ -83,7 +87,6 @@ body {
 #app>section> * {
 	max-width: none;
 	height: auto;
-	border: 1px solid black;
 }
 
 #app>menu {
