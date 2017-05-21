@@ -1,9 +1,9 @@
 <template>
 	<div id="app">
 		<header>
-			<form class="split" @submit.prevent="reload">
-				<input v-model="inputA" @blur="reload" placeholder="Enter radio for deck A…">
-				<input v-model="inputB" @blur="reload" placeholder="Enter radio for deck B…">
+			<form class="split" @submit.prevent="updateDecks">
+				<input v-model="inputA" @blur="updateDecks" placeholder="Enter radio for deck A…">
+				<input v-model="inputB" @blur="updateDecks" placeholder="Enter radio for deck B…">
 				<button type="submit">load</button>
 			</form>
 		</header>
@@ -22,10 +22,10 @@ export default {
 	name: 'youtube-mixer',
 	data() {
 		return {
-			deckA: '',
-			deckB: '',
 			inputA: '',
 			inputB: '',
+			deckA: '',
+			deckB: '',
 			balance: 50
 		}
 	},
@@ -38,7 +38,7 @@ export default {
 		}
 	},
 	methods: {
-		reload() {
+		updateDecks() {
 			this.deckA = this.inputA
 			this.deckB = this.inputB
 		}
