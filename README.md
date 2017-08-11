@@ -1,3 +1,7 @@
+This project is deprecated. See https://github/com/internet4000/radio4000-mix instead.
+
+---
+
 # youtube-mixer
 
 > A YouTube mixer
